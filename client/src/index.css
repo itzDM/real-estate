@@ -1,0 +1,29 @@
+:root {
+  --bg: hsl(0, 0%, 98%);
+  --bg-soft: hsl(0, 0%, 94%);
+  --text: hsl(200deg 5.84% 11.81%);
+  --text-soft: hsl(0, 0%, 15%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+body.dark {
+  --bg-soft: hsl(200, 15%, 8%);
+  --text: hsl(0, 0%, 100%);
+  --text-soft: hsl(0, 0%, 98%);
+  --bg: hsl(200deg 5.84% 11.81%);
+}

@@ -1,0 +1,48 @@
+nav {
+  height: 50px;
+  font-size: 18px;
+  margin: 14px 0;
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  background: var(--bg-soft);
+  padding: 14px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 20px;
+}
+
+a span {
+  font-style: oblique;
+}
+
+nav div {
+  display: flex;
+  gap: 40px;
+}
+
+a {
+  transition: all 0.3s ease-in-out;
+}
+a:hover {
+  scale: 1.02;
+  color: blue;
+}
+
+@media (max-width: 768px) {
+  nav {
+    font-size: 14px;
+  }
+  nav div {
+    gap: 20px;
+  }
+  .logo {
+    font-size: 16px;
+  }
+}

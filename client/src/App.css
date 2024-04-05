@@ -1,0 +1,27 @@
+.layout {
+  max-width: 1368px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: calc(100vh - 14px);
+}
+
+.content {
+  height: calc(100vh - 78px);
+}
+
+@media (max-width: 1368px) {
+  .layout {
+    max-width: 1024px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .layout {
+    max-width: 768px;
+  }
+}
+@media (max-width: 768px) {
+  .layout {
+    max-width: 648px;
+  }
+}
