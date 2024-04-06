@@ -1,7 +1,8 @@
-// getAll Agents
-
-import { Request, Response, json } from "express";
+import { Request, Response } from "express";
 import { Agents } from "../models/agentModels";
+import bcrypt from "bcryptjs";
+
+// getAll Agents
 
 export const getAllAgents = async (req: Request, res: Response) => {
   try {
@@ -26,6 +27,12 @@ type createAgentBody = {
 export const createAgent = async (req: Request, res: Response) => {
   const body: createAgentBody = req.body;
   try {
-    
-  } catch (error: any) {}
+    const hashPass = bcrypt.hashSync(body.password, 10);
+    await new Agents({ ...body, password: hashPass }).save();
+    return res.status(201).json({ message: "Agent Created" });
+  } catch (error: any) {
+    if (error.code == 11000)
+      return res.status(409).json({ error: "Agent Already Found !" });
+    return res.status(500).json({ error: error.message });
+  }
 };
