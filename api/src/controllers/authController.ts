@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import { Users } from "../models/userModels";
 import bcrypt from "bcryptjs";
-import { AgentOrUserProp } from "../types";
-import { generateToken } from "../utils/jsonToken";
+import { generateToken } from "../middleware/jsonToken";
+import { AgentOrUserProp } from "../../types";
 
 // login User
 export const loginUser = async (req: Request, res: Response) => {

@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { Users } from "../models/userModels";
 
-
 // getAll Agents
 
 export const getAllAgents = async (req: Request, res: Response) => {
