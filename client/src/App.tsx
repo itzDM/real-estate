@@ -7,6 +7,7 @@ import Login from "./pages/login/login.tsx";
 import PlaceDetails from "./pages/placeDetails/placeDetails.tsx";
 import PlaceList from "./pages/placeList/placeLIst.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Register from "./pages/register/register.tsx";
 function App() {
   const router = createBrowserRouter([
     {
@@ -34,8 +35,12 @@ function App() {
           element: <About />,
         },
         {
-          path: "/sign-in",
+          path: "/login",
           element: <Login />,
+        },
+        {
+          path: "/register",
+          element: <Register />,
         },
       ],
     },

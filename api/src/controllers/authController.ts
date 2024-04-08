@@ -32,6 +32,8 @@ export const loginUser = async (req: Request, res: Response) => {
 export const registerUser = async (req: Request, res: Response) => {
   const body: AgentOrUserProp = req.body;
   try {
+    if (body.type === "admin")
+      return res.status(401).json({ error: "Invalid Fields" });
     const hashPass = bcrypt.hashSync(body.password, 10);
     await new Users({ ...body, password: hashPass }).save();
     return res.status(201).json({ message: "User Created" });

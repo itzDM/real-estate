@@ -1,0 +1,32 @@
+.loginContainer {
+  display: flex;
+  width: inherit;
+  height: inherit;
+}
+
+.loginContainer form {
+  flex: 3;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.loginContainer input,
+button {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid var(--text-soft);
+}
+
+.login-right {
+  flex: 2;
+  background: var(--bg-soft);
+}
+
+@media (max-width: 768px) {
+  .login-right {
+    display: none;
+  }
+}

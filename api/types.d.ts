@@ -14,6 +14,7 @@ declare module "express-serve-static-core" {
 type AgentOrUserProp = {
   name: string;
   email: string;
+  type: "user" | "admin" | "agent";
   avatar: string;
   password: string;
 };

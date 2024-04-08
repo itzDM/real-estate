@@ -1,0 +1,47 @@
+.registerContainer {
+  display: flex;
+  width: inherit;
+  height: inherit;
+}
+
+.registerContainer form {
+  flex: 3;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.registerContainer input,
+button {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid var(--text-soft);
+}
+.registerType {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 200px;
+}
+.registerType select {
+  padding: 8px;
+}
+
+.registerPic {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 200px;
+}
+.register-right {
+  flex: 2;
+  background: var(--bg-soft);
+}
+
+@media (max-width: 768px) {
+  .register-right {
+    display: none;
+  }
+}
