@@ -14,6 +14,7 @@ export const loginUser = async (req: Request, res: Response) => {
     if (!isCorrectPass)
       return res.status(404).json({ error: "Invalid Credentials" });
     const token = generateToken(user._id, user.type);
+    const { password, type, ...info } = user._doc;
     return res
       .cookie("token", token, {
         httpOnly: true,
@@ -21,7 +22,7 @@ export const loginUser = async (req: Request, res: Response) => {
         maxAge: eval(process.env.EXPIRE_TIME!),
       })
       .status(200)
-      .json({ message: "Login Success" });
+      .json({ data: info });
   } catch (error: any) {
     return res.status(501).json({ error: "Something Went Wrong " });
   }
@@ -40,5 +41,15 @@ export const registerUser = async (req: Request, res: Response) => {
     if (error.code == 11000)
       return res.status(409).json({ error: "User Already Exist" });
     return res.status(500).json({ error: error.message });
+  }
+};
+
+// logout User
+
+export const logoutUser = async (req: Request, res: Response) => {
+  try {
+    res.clearCookie("token").status(200).json({ message: "User Logged Out" });
+  } catch (error: any) {
+    return res.status(501).json({ error: error.message });
   }
 };

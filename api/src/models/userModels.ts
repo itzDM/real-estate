@@ -3,10 +3,10 @@ import mongoose from "mongoose";
 // -------- User  Schema Start Here --------//
 const userSchema = new mongoose.Schema(
   {
-    name: { type: String, required: true,trim:true },
-    email: { type: String, required: true, unique: true ,trim:true },
-    password: { type: String, required: true, select: false ,trim:true },
-    avatar: { type: String, default: "noAvatar.jpg" },
+    name: { type: String, required: true, trim: true },
+    email: { type: String, required: true, unique: true, trim: true },
+    password: { type: String, required: true, select: false, trim: true },
+    avatar: { type: String },
     type: {
       enum: ["user", "admin", "agent"],
       type: String,

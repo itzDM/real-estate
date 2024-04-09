@@ -2,12 +2,13 @@ import "./App.css";
 import About from "./pages/about/about.tsx";
 import Agents from "./pages/agents/agents.tsx";
 import Home from "./pages/home/home.tsx";
-import Layout from "./layout/layout.tsx";
+import { Layout, AuthPages } from "./layout/layout.tsx";
 import Login from "./pages/login/login.tsx";
 import PlaceDetails from "./pages/placeDetails/placeDetails.tsx";
 import PlaceList from "./pages/placeList/placeLIst.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Register from "./pages/register/register.tsx";
+import { UserProfile } from "./pages/profile/userProfile.tsx";
 function App() {
   const router = createBrowserRouter([
     {
@@ -41,6 +42,16 @@ function App() {
         {
           path: "/register",
           element: <Register />,
+        },
+      ],
+    },
+    {
+      path: "/",
+      element: <AuthPages />,
+      children: [
+        {
+          path: "/profile",
+          element: <UserProfile />,
         },
       ],
     },

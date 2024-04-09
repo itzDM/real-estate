@@ -1,8 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
 import { apiRequest } from "../../lib/apiRequest";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../context/AuthContext";
 export default function Login() {
+  const { updateUser } = useContext(AuthContext);
+
   const navigate = useNavigate();
   const [error, SetError] = useState("");
   const handelSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -18,7 +21,10 @@ export default function Login() {
         "Content-Type": "application/json",
       },
     });
-    if (response.message) navigate("/");
+    if (response.data) {
+      updateUser(response.data);
+      navigate("/");
+    }
     SetError(response.error);
   };
   return (

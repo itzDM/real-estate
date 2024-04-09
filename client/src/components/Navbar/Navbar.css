@@ -25,6 +25,7 @@ a span {
 nav div {
   display: flex;
   gap: 40px;
+  align-items: center;
 }
 
 a {
@@ -33,6 +34,13 @@ a {
 a:hover {
   scale: 1.02;
   color: blue;
+}
+
+.navAvatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: none;
 }
 
 @media (max-width: 768px) {
