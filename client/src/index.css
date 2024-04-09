@@ -27,3 +27,9 @@ body.dark {
   --text-soft: hsl(0, 0%, 98%);
   --bg: hsl(200deg 5.84% 11.81%);
 }
+
+.error {
+  color: red;
+  font-weight: bold;
+  font-size: 0.8rem;
+}

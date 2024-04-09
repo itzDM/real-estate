@@ -20,7 +20,7 @@ export default function PlaceList() {
             <div className="filterList">
               <div className="filterType">
                 <label htmlFor="type">Type</label>
-                <select name="type">
+                <select name="type" id="type">
                   <option value="1"> 1</option>
                   <option value="1"> 1</option>
                   <option value="1"> 1</option>
@@ -28,13 +28,15 @@ export default function PlaceList() {
               </div>
               <div className="filterType">
                 <label htmlFor="min">Min Price</label>
-                <input type="text" name="min" />
+                <input type="text" name="min" id="min" />
               </div>
               <div className="filterType">
                 <label htmlFor="max">Max Price</label>
-                <input type="text" name="max" />
+                <input type="text" name="max" id="max" />
               </div>
-              <button className="search">Search</button>
+              <button type="submit" className="search">
+                Search
+              </button>
             </div>
           </div>
         </form>

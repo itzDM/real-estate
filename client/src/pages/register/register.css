@@ -40,6 +40,12 @@ button {
   background: var(--bg-soft);
 }
 
+.register-right img {
+  width: 100%;
+  height: 99%;
+  object-fit: cover;
+}
+
 @media (max-width: 768px) {
   .register-right {
     display: none;

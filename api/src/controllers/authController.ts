@@ -23,7 +23,6 @@ export const loginUser = async (req: Request, res: Response) => {
       .status(200)
       .json({ message: "Login Success" });
   } catch (error: any) {
-    console.log(error);
     return res.status(501).json({ error: "Something Went Wrong " });
   }
 };
