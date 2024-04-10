@@ -31,11 +31,13 @@
   cursor: pointer;
   outline: none;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  color: var(--text);
 }
 
 .filterList {
   display: flex;
   align-items: end;
+  flex-wrap: wrap;
   gap: 20px;
 }
 
@@ -66,9 +68,12 @@ select {
 
 @media (max-width: 768px) {
   .filterList {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
+    align-items: flex-end;
+    gap: 30px;
+  }
+  .filterList input,
+  select {
+    width: 100px;
   }
   .rightPlaceList {
     display: none;
