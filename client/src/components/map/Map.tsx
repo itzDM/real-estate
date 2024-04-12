@@ -1,12 +1,14 @@
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { MapContainer, TileLayer } from "react-leaflet";
 import "./Map.css";
 import "leaflet/dist/leaflet.css";
-export default function Map() {
-  const position = { lat: 26.7606, lng: 83.3732 };
+import MarkerPin from "./marker/marker";
+import { PostType } from "../../types";
+export default function Map({ item }: { item: PostType[] }) {
+  const position = { lat: 20.5937, lng: 78.9629 };
   return (
     <MapContainer
       center={position}
-      zoom={13}
+      zoom={5}
       scrollWheelZoom={true}
       className="map"
     >
@@ -14,11 +16,9 @@ export default function Map() {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={position}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
+      {item?.map((item) => (
+        <MarkerPin item={item} key={item._id} />
+      ))}
     </MapContainer>
   );
 }

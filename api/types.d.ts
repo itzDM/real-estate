@@ -2,7 +2,7 @@ import { Express } from "express-serve-static-core";
 
 interface TokenData {
   userId: string;
-  type: string;
+  type: "user" | "admin" | "agent";
 }
 
 declare module "express-serve-static-core" {

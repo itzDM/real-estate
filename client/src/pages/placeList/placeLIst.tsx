@@ -1,7 +1,20 @@
 import Card from "../../components/Card/Card";
 import Map from "../../components/map/Map";
 import "./placeList.css";
+import { apiRequest } from "../../lib/apiRequest";
+import { useEffect, useState } from "react";
+import { PostType } from "../../types";
 export default function PlaceList() {
+  const [cardData, setCardData] = useState<PostType[]>([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      const data = await apiRequest("/post");
+      setCardData(data);
+    };
+    getData();
+  }, []);
+
   const handelSubmit = (e: React.FormEvent) => {
     e.preventDefault();
   };
@@ -41,14 +54,11 @@ export default function PlaceList() {
           </div>
         </form>
         <div className="cardPlaceList">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          <Card data={cardData} />
         </div>
       </div>
       <div className="rightPlaceList">
-        <Map />
+        <Map item={cardData} />
       </div>
     </section>
   );
