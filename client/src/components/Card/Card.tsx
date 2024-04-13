@@ -6,7 +6,7 @@ export default function Card({ data }: { data: PostType[] }) {
     <>
       {data?.map((item) => (
         <div className="cardContainer" key={item._id}>
-          <Link className="cardImage" to={item._id}>
+          <Link className="cardImage" to={`/${item._id}`}>
             <img src="/homeBg.jpg" alt="tittle" />
           </Link>
           <article className="cardText">
@@ -14,7 +14,7 @@ export default function Card({ data }: { data: PostType[] }) {
             <p>{item.location}</p>
             <div className="cardFooter">
               <p>{item.room}</p>
-              <Link to={item._id}>View</Link>
+              <Link to={`/${item._id}`}>View</Link>
               <button>
                 <i className="heart">♥</i>
               </button>

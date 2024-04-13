@@ -8,7 +8,7 @@ export default function MarkerPin({ item }: { item: PostType }) {
     <Marker position={[Number(item.latitude), Number(item.longitude)]}>
       <Popup>
         <div>
-          <Link to={item._id}>{item.title}</Link>
+          <Link to={`/${item._id}`}>{item.title}</Link>
         </div>
       </Popup>
     </Marker>

@@ -23,7 +23,19 @@ export const getAllPost = async (req: Request, res: Response) => {
     });
     return res.status(200).json(posts);
   } catch (error) {
-    return;
+    return res.status(501).json({ error: "Something Went Wrong" });
+  }
+};
+
+// Get Post By Id
+
+export const getPostById = async (req: Request, res: Response) => {
+  try {
+    const post = await Post.find({ _id: req.params.id }).populate("agentId");
+    if (post.length == 0)
+      return res.status(404).json({ error: "Post Not Found" });
+    return res.status(200).json(post);
+  } catch (error) {
     return res.status(501).json({ error: "Something Went Wrong" });
   }
 };

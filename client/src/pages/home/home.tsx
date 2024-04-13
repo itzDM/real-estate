@@ -1,7 +1,20 @@
 import { Link } from "react-router-dom";
 import Card from "../../components/Card/Card";
 import "./home.css";
+import { useEffect, useState } from "react";
+import { PostType } from "../../types";
+import { apiRequest } from "../../lib/apiRequest";
 export default function Home() {
+  const [cardData, setCardData] = useState<PostType[]>([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      const data = await apiRequest("/post");
+      setCardData(data);
+    };
+    getData();
+  }, []);
+
   return (
     <>
       <section className="section-1">
@@ -18,16 +31,7 @@ export default function Home() {
         </article>
       </section>
       <section className="section-2">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        <Card data={cardData} />
       </section>
     </>
   );
