@@ -5,7 +5,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 export const UserProfile = () => {
-  const { updateUser } = useContext(AuthContext);
+  const { updateUser, currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const handelLogout = async () => {
     await apiRequest("/auth/logout", {
@@ -15,8 +15,29 @@ export const UserProfile = () => {
     navigate("/");
   };
   return (
-    <div>
-      <button onClick={handelLogout}>Logout</button>
+    <div className="profileSection">
+      <form className="leftProfile">
+        <input
+          type="text"
+          name="name"
+          defaultValue={currentUser?.name}
+          placeholder="Enter Your Name"
+          id=""
+        />
+        <input
+          type="email"
+          name="email"
+          defaultValue={currentUser?.email}
+          placeholder="Enter Your Name"
+          id=""
+        />
+        <input type="file" accept="image/*" />
+        <button type="submit">Update Details</button>
+      </form>
+      <div className="rightProfile">
+        <img src={currentUser?.avatar || "./noAvatar.svg"} alt="" />
+        <button onClick={handelLogout}>Logout</button>
+      </div>
     </div>
   );
 };
