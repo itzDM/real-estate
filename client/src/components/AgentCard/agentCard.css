@@ -1,0 +1,17 @@
+.agentSection {
+  background: var(--bg-soft);
+  display: flex;
+  gap: 20px;
+  border-radius: 5%;
+}
+
+.agentImg {
+  width: 150px;
+  height: 150px;
+}
+
+.agentsInfo {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+}

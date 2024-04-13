@@ -16,7 +16,7 @@ export const UserProfile = () => {
   };
   return (
     <div className="profileSection">
-      <form className="leftProfile">
+      <form className="leftUserProfile">
         <input
           type="text"
           name="name"
@@ -35,7 +35,11 @@ export const UserProfile = () => {
         <button type="submit">Update Details</button>
       </form>
       <div className="rightProfile">
-        <img src={currentUser?.avatar || "./noAvatar.svg"} alt="" />
+        <img
+          className="prevImg"
+          src={currentUser?.avatar || "./noAvatar.svg"}
+          alt=""
+        />
         <button onClick={handelLogout}>Logout</button>
       </div>
     </div>
