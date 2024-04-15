@@ -1,5 +1,5 @@
 export const apiRequest = async (url: string, options?: RequestInit) =>
-  await fetch(`http://localhost:8000/api/v1${url}`, {
+  await fetch(`${import.meta.env.VITE_BACKEND_URL}${url}`, {
     ...options,
     credentials: "include",
     headers: {

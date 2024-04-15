@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { Post } from "../models/postModels";
-import { populate } from "dotenv";
 
 export const createPost = async (req: Request, res: Response) => {
   const data = req.body;
@@ -17,10 +16,24 @@ export const createPost = async (req: Request, res: Response) => {
 //Get all Post  no auth is require
 
 export const getAllPost = async (req: Request, res: Response) => {
+  const query = req.query;
   try {
-    const posts = await Post.find().populate("agentId").sort({
-      createdAt: -1,
-    });
+    console.log(query);
+    const posts = await Post.find({
+      $or: [
+        { title: { $regex: query.search, $options: "i" } },
+        {
+          price: {
+            $gte: Number(query.min),
+            $lte: Number(query.max),
+          },
+        },
+      ],
+    })
+      .populate("agentId")
+      .sort({
+        createdAt: -1,
+      });
     return res.status(200).json(posts);
   } catch (error) {
     return res.status(501).json({ error: "Something Went Wrong" });

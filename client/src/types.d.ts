@@ -8,6 +8,7 @@ export interface PostType {
   likes: string[];
   longitude: string;
   latitude: string;
+  price: number;
   createdAt: Date;
   updatedAt: Date;
 }

@@ -32,4 +32,11 @@ body.dark {
   color: red;
   font-weight: bold;
   font-size: 0.8rem;
+  text-align: center;
+}
+.message {
+  color: green;
+  font-weight: bold;
+  text-align: center;
+  font-size: 0.8rem;
 }

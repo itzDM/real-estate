@@ -42,6 +42,7 @@ export const UserProfile = () => {
       method: "PUT",
       body: JSON.stringify({ ...data, avatar: photoPrev }),
     });
+    updateUser(res.data);
     console.log(res);
   };
   return (

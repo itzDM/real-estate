@@ -4,20 +4,36 @@ import "./placeList.css";
 import { apiRequest } from "../../lib/apiRequest";
 import { useEffect, useState } from "react";
 import { PostType } from "../../types";
+import { useSearchParams } from "react-router-dom";
 export default function PlaceList() {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const [query, setQuery] = useState({
+    search: searchParams.get("search") || "",
+    min: searchParams.get("min") || "0",
+    max: searchParams.get("max") || "10000",
+  });
+
   const [cardData, setCardData] = useState<PostType[]>([]);
+
+  const handelSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget as HTMLFormElement);
+    const formElement = Object.fromEntries(formData.entries());
+    setQuery({
+      ...query,
+      ...formElement,
+    });
+    setSearchParams(query);
+  };
 
   useEffect(() => {
     const getData = async () => {
-      const data = await apiRequest("/post");
+      const data = await apiRequest("/post?" + new URLSearchParams(query));
       setCardData(data);
     };
     getData();
-  }, []);
-
-  const handelSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-  };
+  }, [query]);
   return (
     <section className="placeListContainer">
       <div className="leftPlaceList">
@@ -54,7 +70,11 @@ export default function PlaceList() {
           </div>
         </form>
         <div className="cardPlaceList">
-          <Card data={cardData} />
+          {cardData.length == 0 ? (
+            <h1 className="message">No Data Found</h1>
+          ) : (
+            <Card data={cardData} />
+          )}
         </div>
       </div>
       <div className="rightPlaceList">

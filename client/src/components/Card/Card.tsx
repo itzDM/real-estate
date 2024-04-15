@@ -11,6 +11,7 @@ export default function Card({ data }: { data: PostType[] }) {
           </Link>
           <article className="cardText">
             <h1>{item.title}</h1>
+            <h1>{item.price}</h1>
             <p>{item.location}</p>
             <div className="cardFooter">
               <p>{item.room}</p>

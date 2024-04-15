@@ -31,7 +31,11 @@ export default function Home() {
         </article>
       </section>
       <section className="section-2">
-        <Card data={cardData} />
+        {cardData.length == 0 ? (
+          <h1 className="message">No data found</h1>
+        ) : (
+          <Card data={cardData} />
+        )}
       </section>
     </>
   );
