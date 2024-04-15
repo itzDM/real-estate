@@ -4,11 +4,14 @@ import "leaflet/dist/leaflet.css";
 import MarkerPin from "./marker/marker";
 import { PostType } from "../../types";
 export default function Map({ item }: { item: PostType[] }) {
-  const position = { lat: 20.5937, lng: 78.9629 };
   return (
     <MapContainer
-      center={position}
-      zoom={5}
+      center={
+        item?.length == 1
+          ? [item[0]?.latitude, item[0]?.longitude]
+          : [20.5937, 78.9629]
+      }
+      zoom={4}
       scrollWheelZoom={true}
       className="map"
     >

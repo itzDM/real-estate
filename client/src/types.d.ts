@@ -3,14 +3,15 @@ export interface PostType {
   title: string;
   description: string;
   agentId: AgentID;
-  room: string;
+  price: number;
+  type: string;
   location: string;
   likes: string[];
-  longitude: string;
-  latitude: string;
-  price: number;
+  longitude: number;
+  latitude: number;
   createdAt: Date;
   updatedAt: Date;
+  __v: number;
 }
 
 export interface AgentID {

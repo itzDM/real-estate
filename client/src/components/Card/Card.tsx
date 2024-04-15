@@ -14,7 +14,7 @@ export default function Card({ data }: { data: PostType[] }) {
             <h1>{item.price}</h1>
             <p>{item.location}</p>
             <div className="cardFooter">
-              <p>{item.room}</p>
+              <p>{item.type}</p>
               <Link to={`/${item._id}`}>View</Link>
               <button>
                 <i className="heart">♥</i>

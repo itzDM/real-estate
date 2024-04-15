@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function MarkerPin({ item }: { item: PostType }) {
   return (
-    <Marker position={[Number(item.latitude), Number(item.longitude)]}>
+    <Marker position={[item.latitude, item.longitude]}>
       <Popup>
         <div>
           <Link to={`/${item._id}`}>{item.title}</Link>

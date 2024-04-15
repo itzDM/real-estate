@@ -17,23 +17,22 @@ export const createPost = async (req: Request, res: Response) => {
 
 export const getAllPost = async (req: Request, res: Response) => {
   const query = req.query;
+
+  const filter = {
+    ...(query.search && { title: { $regex: query?.search, $options: "i" } }),
+    ...((query.min || query.max) && {
+      price: {
+        ...(query.min && { $gte: Number(query.min) }),
+        ...(query.max && { $lte: Number(query.max) }),
+      },
+    }),
+    ...(query.type && { type: query.type }),
+  };
+
   try {
-    console.log(query);
-    const posts = await Post.find({
-      $or: [
-        { title: { $regex: query.search, $options: "i" } },
-        {
-          price: {
-            $gte: Number(query.min),
-            $lte: Number(query.max),
-          },
-        },
-      ],
-    })
-      .populate("agentId")
-      .sort({
-        createdAt: -1,
-      });
+    const posts = await Post.find(filter).populate("agentId").sort({
+      createdAt: -1,
+    });
     return res.status(200).json(posts);
   } catch (error) {
     return res.status(501).json({ error: "Something Went Wrong" });

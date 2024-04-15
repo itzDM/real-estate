@@ -7,12 +7,12 @@ const postSchema = new mongoose.Schema(
     description: { type: String, required: true, trim: true },
     image: { type: String },
     agentId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-    price: { type: String, required: true },
-    room: { type: String, required: true },
+    price: { type: Number, required: true },
+    type: { type: String, enum: ["room", "lands"], required: true },
     location: { type: String, required: true, trim: true },
     likes: { type: Array, default: [] },
-    longitude: { type: String, required: true },
-    latitude: { type: String, required: true },
+    longitude: { type: Number, required: true },
+    latitude: { type: Number, required: true },
   },
   { timestamps: true }
 );

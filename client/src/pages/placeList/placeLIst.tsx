@@ -6,13 +6,9 @@ import { useEffect, useState } from "react";
 import { PostType } from "../../types";
 import { useSearchParams } from "react-router-dom";
 export default function PlaceList() {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [, setSearchParams] = useSearchParams();
 
-  const [query, setQuery] = useState({
-    search: searchParams.get("search") || "",
-    min: searchParams.get("min") || "0",
-    max: searchParams.get("max") || "10000",
-  });
+  const [query, setQuery] = useState({});
 
   const [cardData, setCardData] = useState<PostType[]>([]);
 
@@ -24,16 +20,16 @@ export default function PlaceList() {
       ...query,
       ...formElement,
     });
-    setSearchParams(query);
   };
 
   useEffect(() => {
+    setSearchParams(query);
     const getData = async () => {
       const data = await apiRequest("/post?" + new URLSearchParams(query));
       setCardData(data);
     };
     getData();
-  }, [query]);
+  }, [query, setSearchParams]);
   return (
     <section className="placeListContainer">
       <div className="leftPlaceList">
@@ -50,9 +46,9 @@ export default function PlaceList() {
               <div className="filterType">
                 <label htmlFor="type">Type</label>
                 <select name="type" id="type">
-                  <option value="1"> 1</option>
-                  <option value="1"> 1</option>
-                  <option value="1"> 1</option>
+                  <option value="">All</option>
+                  <option value="room">Room</option>
+                  <option value="lands">Land</option>
                 </select>
               </div>
               <div className="filterType">
