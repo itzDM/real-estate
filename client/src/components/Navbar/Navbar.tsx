@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
-import "./Navbar.css";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import "./Navbar.css";
 
 export default function Navbar() {
   const { currentUser } = useContext(AuthContext);
@@ -19,6 +19,7 @@ export default function Navbar() {
           <Link to="/login">Sign-in</Link>
         ) : (
           <div>
+            <p>{currentUser.name}</p>
             <Link to="/profile">
               <img
                 className="navAvatar"

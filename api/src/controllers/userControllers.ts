@@ -16,16 +16,17 @@ export const getAllUser = async (req: Request, res: Response) => {
 
 export const updateUser = async (req: Request, res: Response) => {
   try {
-    const body = req.body;
-    console.log(body);
-    // const user = await Users.findOneAndUpdate(
-    //   { _id: req.params.id },
-    //   { $set: req.body },
-    //   { upsert: true }
-    // );
-    // if (!user) return res.status(404).json({ error: "User Not Found" });
-    return res.status(200).json({ message: "User Updated" });
+    const user = await Users.findOneAndUpdate(
+      { _id: req.tokenData.userId },
+      { $set: req.body },
+      { upsert: true, new: true }
+    );
+    if (!user) return res.status(404).json({ error: "User Not Found" });
+    const { password, type, ...info } = user._doc;
+    return res.status(200).json(info);
   } catch (error: any) {
+    if (error.code === 11000)
+      return res.status(409).json({ error: "Email Already Exist" });
     return res.status(501).json({ error: error.message });
   }
 };
