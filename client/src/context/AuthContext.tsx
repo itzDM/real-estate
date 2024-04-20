@@ -7,6 +7,7 @@ interface userData {
   avatar: string;
   createdAt: Date;
   updatedAt: Date;
+  type: "agent" | "user";
   __v: number;
 }
 

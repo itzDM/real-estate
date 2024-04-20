@@ -1,8 +1,8 @@
-import { Request, Response } from "express";
-import { Users } from "../models/userModels";
 import bcrypt from "bcryptjs";
-import { generateToken } from "../middleware/jsonToken";
+import { Request, Response } from "express";
 import { AgentOrUserProp } from "../../types";
+import { generateToken } from "../middleware/jsonToken";
+import { Users } from "../models/userModels";
 
 // login User
 export const loginUser = async (req: Request, res: Response) => {
@@ -14,7 +14,7 @@ export const loginUser = async (req: Request, res: Response) => {
     if (!isCorrectPass)
       return res.status(404).json({ error: "Invalid Credentials" });
     const token = generateToken(user._id, user.type);
-    const { password, type, ...info } = user._doc;
+    const { password, ...info } = user._doc;
     return res
       .cookie("token", token, {
         httpOnly: true,

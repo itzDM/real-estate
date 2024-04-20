@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { apiRequest } from "../../lib/apiRequest";
 import "./userProfile.css";
@@ -33,6 +33,7 @@ export const UserProfile = () => {
         }
       };
     }
+    // TODO: Upload img to server and set photoPrev to img url
   };
 
   const handelUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -77,6 +78,11 @@ export const UserProfile = () => {
           src={photoPrev ? photoPrev : currentUser?.avatar || "./noAvatar.svg"}
           alt=""
         />
+        {currentUser?.type == "agent" && (
+          <Link to="/create" className="">
+            Create Post
+          </Link>
+        )}
         <button onClick={handelLogout}>Logout</button>
       </div>
     </div>

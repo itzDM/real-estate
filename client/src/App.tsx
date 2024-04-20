@@ -1,14 +1,15 @@
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./App.css";
+import { AuthAndAgentPages, AuthPages, Layout } from "./layout/layout.tsx";
 import About from "./pages/about/about.tsx";
 import Agents from "./pages/agents/agents.tsx";
+import CreatePost from "./pages/create/create.tsx";
 import Home from "./pages/home/home.tsx";
-import { Layout, AuthPages } from "./layout/layout.tsx";
 import Login from "./pages/login/login.tsx";
 import PlaceDetails from "./pages/placeDetails/placeDetails.tsx";
 import PlaceList from "./pages/placeList/placeLIst.tsx";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Register from "./pages/register/register.tsx";
 import { UserProfile } from "./pages/profile/userProfile.tsx";
+import Register from "./pages/register/register.tsx";
 function App() {
   const router = createBrowserRouter([
     {
@@ -52,6 +53,16 @@ function App() {
         {
           path: "/profile",
           element: <UserProfile />,
+        },
+      ],
+    },
+    {
+      path: "/",
+      element: <AuthAndAgentPages />,
+      children: [
+        {
+          path: "/create",
+          element: <CreatePost />,
         },
       ],
     },

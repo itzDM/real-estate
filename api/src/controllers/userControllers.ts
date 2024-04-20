@@ -22,7 +22,7 @@ export const updateUser = async (req: Request, res: Response) => {
       { upsert: true, new: true }
     );
     if (!user) return res.status(404).json({ error: "User Not Found" });
-    const { password, type, ...info } = user._doc;
+    const { password, ...info } = user._doc;
     return res.status(200).json(info);
   } catch (error: any) {
     if (error.code === 11000)

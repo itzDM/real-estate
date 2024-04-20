@@ -1,9 +1,9 @@
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Map from "../../components/map/Map";
-import "./placeDetails.css";
 import { apiRequest } from "../../lib/apiRequest";
-import { useEffect, useState } from "react";
 import { PostType } from "../../types";
+import "./placeDetails.css";
 export default function PlaceDetails() {
   const [cardData, setCardData] = useState<PostType[]>([]);
   const location = useLocation();
@@ -16,7 +16,7 @@ export default function PlaceDetails() {
     };
     getData();
   }, [id]);
-
+  console.log(cardData);
   return (
     <div className="placeDetails">
       <section className="left">
@@ -43,7 +43,17 @@ export default function PlaceDetails() {
       <section className="right">
         <article>
           <div className="details">
-            <h1>this is details </h1>
+            <h2>{cardData[0]?.title}</h2>
+            <p>{cardData[0]?.location}</p>
+            <p>{cardData[0]?.type}</p>
+            <p>{cardData[0]?.price}</p>
+            <p>
+              Likes : <span>{cardData[0]?.likes.length}</span>
+            </p>
+            <p>
+              Create At :
+              <span>{cardData[0]?.createdAt.toString().split("T")[0]}</span>
+            </p>
           </div>
           <div className="location">{cardData && <Map item={cardData} />}</div>
         </article>

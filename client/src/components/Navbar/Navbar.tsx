@@ -19,7 +19,6 @@ export default function Navbar() {
           <Link to="/login">Sign-in</Link>
         ) : (
           <div>
-            <p>{currentUser.name}</p>
             <Link to="/profile">
               <img
                 className="navAvatar"
