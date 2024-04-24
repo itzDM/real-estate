@@ -16,7 +16,6 @@ export default function PlaceDetails() {
     };
     getData();
   }, [id]);
-  console.log(cardData);
   return (
     <div className="placeDetails">
       <section className="left">
