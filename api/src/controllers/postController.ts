@@ -52,7 +52,7 @@ export const getPostById = async (req: Request, res: Response) => {
   }
 };
 
-// post Like
+// post Like and dislike
 
 export const likePost = async (req: Request, res: Response) => {
   try {
