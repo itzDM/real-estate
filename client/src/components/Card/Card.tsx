@@ -1,7 +1,16 @@
 import { Link } from "react-router-dom";
-import "./Card.css";
+import { apiRequest } from "../../lib/apiRequest";
 import { PostType } from "../../types";
+import "./Card.css";
 export default function Card({ data }: { data: PostType[] }) {
+  const handelLike = async (id: string) => {
+    const res = await apiRequest(`/post/like/${id}`);
+    if (res.message) {
+      window.alert(res.message);
+    } else {
+      window.alert(res.error);
+    }
+  };
   return (
     <>
       {data?.map((item) => (
@@ -17,7 +26,9 @@ export default function Card({ data }: { data: PostType[] }) {
               <p>{item.type}</p>
               <Link to={`/${item._id}`}>View</Link>
               <button>
-                <i className="heart">♥</i>
+                <span className="heart" onClick={() => handelLike(item?._id)}>
+                  ♥ {item?.likes.length}
+                </span>
               </button>
             </div>
           </article>

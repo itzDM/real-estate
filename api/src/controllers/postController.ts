@@ -51,3 +51,25 @@ export const getPostById = async (req: Request, res: Response) => {
     return res.status(501).json({ error: "Something Went Wrong" });
   }
 };
+
+// post Like
+
+export const likePost = async (req: Request, res: Response) => {
+  try {
+    const { userId } = req.tokenData;
+    const post = await Post.findById(req.params.id);
+    if (!post) {
+      return res.status(404).json({ error: "Post Not Found" });
+    }
+    if (!post.likes.includes(userId)) {
+      await post.updateOne({ $push: { likes: userId } });
+      return res.status(200).json({ message: "Post has been likes" });
+    } else {
+      await post.updateOne({ $pull: { likes: userId } });
+      return res.status(200).json({ message: "Post has been dislikes" });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(501).json({ error: "Something Went Wrong" });
+  }
+};
